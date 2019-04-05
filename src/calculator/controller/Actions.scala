@@ -1,5 +1,6 @@
 package calculator.controller
 
+import calculator.model.CalcState.NumberState
 import calculator.model.Calculator
 import calculator.model.Decimal.WholeNumber
 import calculator.model.Operation._
@@ -25,6 +26,7 @@ class EqualAction(calculator: Calculator) extends EventHandler[ActionEvent] {
 
 class ClearAction(calculator: Calculator) extends EventHandler[ActionEvent] {
   override def handle(event: ActionEvent): Unit = { //Resets All States and Variables
+    calculator.calcState = new NumberState(calculator)
     calculator.decimal = new WholeNumber(calculator)
     calculator.operation = new Initial(calculator)
     calculator.numberWorkedOn = "0"
